@@ -112,7 +112,7 @@ def prepare_text_batch(batchfnames, wd=256, ht=256, anglejitter=False):
 def load_style_image_pair(filename, scales=[-1.0,-1./3,1./3,1.0], sketchmodule=None, gpu=True):
     img = Image.open(filename) 
     ori_wd, ori_ht = img.size
-    ori_wd = ori_wd / 2
+    ori_wd = int(ori_wd / 2)
     X = pil2tensor(img.crop((0,0,ori_wd,ori_ht))).unsqueeze(dim=0)
     Y = pil2tensor(img.crop((ori_wd,0,ori_wd*2,ori_ht))).unsqueeze(dim=0)
     Xls = []    
