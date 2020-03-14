@@ -37,7 +37,7 @@ def main():
     X = to_var(X) if opts.gpu else X
     Noise = to_var(Noise) if opts.gpu else Noise
     for epoch in range(opts.step1_epochs):
-        for i in range(opts.Straining_num/opts.batchsize):
+        for i in range(opts.Straining_num//opts.batchsize):
             idx = opts.scale_num-1
             xl, x = cropping_training_batches(Xl[idx], X, Noise, opts.batchsize, 
                                       opts.Sanglejitter, opts.subimg_size, opts.subimg_size)
@@ -47,7 +47,7 @@ def main():
             print('LDadv: %+.3f, LGadv: %+.3f, Lrec: %+.3f, Lgly: %+.3f'%(losses[0], losses[1], losses[2], losses[3]))
     netShapeM.G_S.myCopy()
     for epoch in range(opts.step2_epochs):
-        for i in range(opts.Straining_num/opts.batchsize):
+        for i in range(opts.Straining_num//opts.batchsize):
             idx = random.choice([0, opts.scale_num-1])
             xl, x = cropping_training_batches(Xl[idx], X, Noise, opts.batchsize, 
                                       opts.Sanglejitter, opts.subimg_size, opts.subimg_size)
@@ -56,7 +56,7 @@ def main():
                                                           opts.Straining_num/opts.batchsize), end=': ')
             print('LDadv: %+.3f, LGadv: %+.3f, Lrec: %+.3f, Lgly: %+.3f'%(losses[0], losses[1], losses[2], losses[3]))
     for epoch in range(opts.step3_epochs):
-        for i in range(opts.Straining_num/opts.batchsize):
+        for i in range(int(opts.Straining_num//opts.batchsize)):
             idx = random.choice(range(opts.scale_num))
             xl, x = cropping_training_batches(Xl[idx], X, Noise, opts.batchsize, 
                                       opts.Sanglejitter, opts.subimg_size, opts.subimg_size)
