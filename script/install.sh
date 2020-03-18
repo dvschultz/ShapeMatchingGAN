@@ -1,7 +1,8 @@
 #!/bin/bash
 #run bash ./script/install.sh from the root folder
 
-pip install gdown
+apt-get install -y libsm6 libxext6 libxrender-dev
+pip install gdown matplotlib pillow==6.2.2 opencv-python
 
 cd save
 gdown --id 1gjHR39deUSPChtRbKAD80waoQFTiXyMs #download example checkpoint files
