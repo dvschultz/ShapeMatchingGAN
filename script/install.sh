@@ -3,7 +3,7 @@
 
 pip install gdown
 
-cd ShapeMatchingGAN/save
+cd save
 gdown --id 1gjHR39deUSPChtRbKAD80waoQFTiXyMs #download example checkpoint files
 unzip ShapeMGAN-data_plus_model.zip
 rm -r data/style
@@ -15,4 +15,3 @@ mv save/*.* ./
 rmdir save
 rm ShapeMGAN-data_plus_model.zip
 rm -r data
-cd ../src
