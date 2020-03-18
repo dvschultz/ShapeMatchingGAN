@@ -42,6 +42,7 @@ def main():
 	global args
 	args = parse_args()
 	filename =  os.path.splitext(os.path.basename(args.image))[0]
+	mask_filename =  os.path.splitext(os.path.basename(args.image_mask))[0]
 
 	img = Image.open(args.image)
 
@@ -51,9 +52,11 @@ def main():
 	else:
 		processed_mask = utils.text_image_preprocessing(args.image_mask)
 
+	processed_mask.save(os.path.join('../data/style',mask_filename+'_processed.png'))
+
 	dst = Image.new('RGB', (img.width + img.width, img.height))
-	dst.paste(img, (0, 0))
-	dst.paste(processed_mask, (img.width, 0))
+	dst.paste(img, (img.width, 0))
+	dst.paste(processed_mask, (0, 0))
 	dst.save(os.path.join('../data/style',filename+'.png'))
 
 
